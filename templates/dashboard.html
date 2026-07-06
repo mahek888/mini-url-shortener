@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Dashboard</h1>
+
+    <p class="subtitle">
+
+        View all your shortened URLs and click statistics.
+
+    </p>
+
+    {% if links %}
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th style="width:20%;">Short Code</th>
+                <th style="width:65%;">Destination</th>
+                <th style="width:15%;">Clicks</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for link in links %}
+
+            <tr>
+
+                <td>
+
+                    <a
+
+                        href="{{ url_for('redirect_short_url', code=link.code) }}"
+
+                        target="_blank"
+
+                    >
+
+                        {{ link.code }}
+
+                    </a>
+
+                </td>
+
+                <td>
+
+                    {{ link.url }}
+
+                </td>
+
+                <td>
+
+                    {{ link.clicks }}
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="empty">
+
+        <h2>No links yet</h2>
+
+        <p>
+
+            Create your first shortened URL to see it here.
+
+        </p>
+
+    </div>
+
+    {% endif %}
+
+    <div class="actions">
+
+        <a
+
+            href="{{ url_for('home') }}"
+
+        >
+
+            <button
+                class="secondary"
+                type="button"
+            >
+
+                ← Back Home
+
+            </button>
+
+        </a>
+
+    </div>
+
+    <div class="footer">
+
+        Built with Flask • Python • JSON
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

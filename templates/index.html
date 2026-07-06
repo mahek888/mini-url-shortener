@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mini URL Shortener</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body class="home-page">
+
+<div class="container">
+
+    <h1>Mini URL Shortener</h1>
+
+    <p class="subtitle">
+
+        Transform long URLs into clean, shareable links.
+
+    </p>
+
+    {% if error %}
+
+    <div class="error">
+
+        {{ error }}
+
+    </div>
+
+    {% endif %}
+
+    <form
+        action="{{ url_for('shorten') }}"
+        method="POST"
+    >
+
+        <input
+
+            type="text"
+
+            name="url"
+
+            placeholder="https://example.com"
+
+            autocomplete="off"
+
+            required
+
+        >
+
+        <button type="submit">
+
+            Shorten URL
+
+        </button>
+
+    </form>
+
+    {% if short_url %}
+
+    <div class="success">
+
+        <h3>Link created successfully</h3>
+
+        <p>
+
+            <strong>Short URL</strong>
+
+        </p>
+
+        <div class="link-box">
+
+            <a
+
+                id="shortLink"
+
+                href="{{ short_url }}"
+
+                target="_blank"
+
+                rel="noopener noreferrer"
+
+            >
+
+                {{ short_url }}
+
+            </a>
+
+        </div>
+
+        <p>
+
+            <strong>Destination</strong>
+
+        </p>
+
+        <p style="margin-top:8px; color:#6b7280; word-break:break-all;">
+
+            {{ original_url }}
+
+        </p>
+
+        <div class="actions">
+
+            <button
+                id="copyBtn"
+                type="button"
+            >
+                Copy
+            </button>
+
+            <a
+
+                href="{{ short_url }}"
+
+                target="_blank"
+
+            >
+
+                <button
+                    class="secondary"
+                    type="button"
+                >
+
+                    ↗ Open
+
+                </button>
+
+            </a>
+
+            <a
+
+                href="{{ url_for('dashboard') }}"
+
+            >
+
+                <button
+                    class="secondary"
+                    type="button"
+                >
+
+                    Dashboard
+
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    <div class="footer">
+
+        Built with Flask • Python • JSON
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
