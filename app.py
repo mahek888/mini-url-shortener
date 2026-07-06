@@ -3,6 +3,7 @@ import json
 import random
 import string
 from flask import url_for
+import os
 
 app = Flask(__name__)
 
@@ -113,4 +114,8 @@ def redirect_short_url(code):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000)),
+        debug=True
+    )
