@@ -86,6 +86,16 @@ http://127.0.0.1:5000
 
 ---
 
+6. Screenshots
+
+![App Screenshot](screenshots/ss1.png)
+
+![App Screenshot](screenshots/ss2.png)
+
+![App Screenshot](screenshots/ss3.png)
+
+---
+
 ## How It Works
 
 1. Enter a valid URL. [ should have http:// or https:// ]
